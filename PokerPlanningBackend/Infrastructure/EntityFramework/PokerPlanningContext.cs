@@ -6,7 +6,7 @@ namespace PokerPlanningBackend.Infrastructure.EntityFramework;
 
 public class PokerPlanningSQLiteContext : DbContext
 {
-    public DbSet<CardEntity> Cards { get; set; }
+    public DbSet<CardDAO> Cards { get; set; }
 
     public string DatabasePath { get; }
 
@@ -24,5 +24,10 @@ public class PokerPlanningSQLiteContext : DbContext
         {
             optionsBuilder.UseSqlite($"Data Source={DatabasePath}");
         }
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
     }
 }

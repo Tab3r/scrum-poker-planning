@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using PokerPlanningBackend.Infrastructure.EntityFramework;
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // BBDD
 builder.Services.AddDbContext<PokerPlanningSQLiteContext>(options =>
     options.UseSqlite("Data Source=pokerplanning.db"));
+
+// Automapper
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
