@@ -17,7 +17,7 @@ namespace PokerPlanningBackend.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.7");
 
-            modelBuilder.Entity("PokerPlanningBackend.Infrastructure.EntityFramework.Entities.CardEntity", b =>
+            modelBuilder.Entity("PokerPlanningBackend.Infrastructure.EntityFramework.Entities.CardDAO", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

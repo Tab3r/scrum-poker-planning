@@ -5,5 +5,6 @@ namespace PokerPlanningBackend.Domain.Repositories;
 
 public interface ICardRepository
 {
-    List<Card> GetAllCards();
+    Task<List<Card>> GetAllCards();
+    Task<Card> CreateNewCard(int value);
 }

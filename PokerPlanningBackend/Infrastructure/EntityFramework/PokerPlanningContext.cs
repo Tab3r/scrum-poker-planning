@@ -13,7 +13,8 @@ public class PokerPlanningSQLiteContext : DbContext
     public PokerPlanningSQLiteContext(DbContextOptions<PokerPlanningSQLiteContext> options)
         : base(options)
     {
-        var localfolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //var localfolder = Environment.GetFolderPath(Environment.SpecialFolder.);
+        var localfolder = ".";
         var localFile = System.IO.Path.Combine(localfolder, "db", "pokerplanning.db");
         this.DatabasePath = localFile;
     }

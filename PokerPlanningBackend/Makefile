@@ -2,6 +2,8 @@
 
 migration-first: ## Create first migration
 	@dotnet ef migrations add InitialCreate --verbose
+migration-remove-last:
+	@dotnet ef migrations remove
 migration-apply: ## Apply migrations to database
 	@dotnet ef database update
 migration-drop: ## Drop database

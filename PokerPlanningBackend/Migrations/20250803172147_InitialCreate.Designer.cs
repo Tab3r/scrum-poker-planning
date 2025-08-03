@@ -11,7 +11,7 @@ using PokerPlanningBackend.Infrastructure.EntityFramework;
 namespace PokerPlanningBackend.Migrations
 {
     [DbContext(typeof(PokerPlanningSQLiteContext))]
-    [Migration("20250723173221_InitialCreate")]
+    [Migration("20250803172147_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace PokerPlanningBackend.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.7");
 
-            modelBuilder.Entity("PokerPlanningBackend.Infrastructure.EntityFramework.Entities.CardEntity", b =>
+            modelBuilder.Entity("PokerPlanningBackend.Infrastructure.EntityFramework.Entities.CardDAO", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
