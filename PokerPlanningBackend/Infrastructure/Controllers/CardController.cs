@@ -20,6 +20,6 @@ public class CardController : ControllerBase
     public async Task<ActionResult<Card>> CreateNewCard([FromBody] int value)
     {
         var cardCreated = await this._cardService.CreateNewCard(value);
-        return Ok(cardCreated);
+        return Created(string.Empty, cardCreated);
     }
 }

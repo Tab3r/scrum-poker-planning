@@ -25,6 +25,7 @@ public class PokerPlanningSQLiteContext : DbContext
         {
             optionsBuilder.UseSqlite($"Data Source={DatabasePath}");
         }
+        //base.OnConfiguring(optionsBuilder);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -41,3 +41,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Make the implicit Program class public -> can be tested in integration
+public partial class Program { }
