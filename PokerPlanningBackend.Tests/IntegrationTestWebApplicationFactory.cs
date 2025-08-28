@@ -1,9 +1,11 @@
 using System;
+using System.Data.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using PokerPlanningBackend.Infrastructure.EntityFramework;
 
@@ -30,6 +32,10 @@ public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Progra
             serviceCollection.Remove(serviceCollection.Single(serviceDescriptor =>
                 serviceDescriptor.ServiceType == typeof(DbContextOptions<PokerPlanningSQLiteContext>))
             );
+
+            // Better way?... I don't know
+            //serviceCollection.RemoveAll<DbContextOptions<PokerPlanningSQLiteContext>>();
+
             // Add new one
             serviceCollection.AddDbContext<PokerPlanningSQLiteContext>(dbContextOptionsBuilder =>
             {
@@ -44,6 +50,8 @@ public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Progra
             this._context = scope.ServiceProvider.GetRequiredService<PokerPlanningSQLiteContext>();
 
             this._context.Database.EnsureCreated();
+            // or
+            //this._context.Database.Migrate();
         });
     }
 
