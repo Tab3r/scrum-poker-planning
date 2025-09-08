@@ -1,24 +1,24 @@
 using System;
-using System.Data.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using PokerPlanningBackend.Infrastructure.EntityFramework;
+using Testcontainers.PostgreSql;
 
 namespace PokerPlanningBackend.Tests;
 
-public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
+public class IntegrationTestContainersWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private DbContext? _context = null;
 
+    private readonly PostgreSqlContainer _postgresqlContainer = new PostgreSqlBuilder().Build();
+
     public Task InitializeAsync()
     {
-        //throw new NotImplementedException();
-        return Task.CompletedTask;
+        return _postgresqlContainer.StartAsync();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -62,11 +62,6 @@ public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Progra
 
     public Task DisposeAsync()
     {
-        if (_context != null)
-        {
-            return _context.Database.EnsureDeletedAsync();
-        }
-        return Task.CompletedTask;
+        return _postgresqlContainer.DisposeAsync().AsTask();
     }
-
 }
