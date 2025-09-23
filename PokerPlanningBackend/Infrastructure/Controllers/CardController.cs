@@ -16,6 +16,13 @@ public class CardController : ControllerBase
         _cardService = cardService;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<Card>>> GetAllCard()
+    {
+        var allCards = await this._cardService.GetAllCardsAsync();
+        return allCards;
+    }
+
     [HttpPost]
     public async Task<ActionResult<Card>> CreateNewCard([FromBody] int value)
     {
